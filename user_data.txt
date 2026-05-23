@@ -1,0 +1,5 @@
+Income: 5000
+Rent: 1200
+groceries: 500
+Utilities: 300
+Fun: 800
