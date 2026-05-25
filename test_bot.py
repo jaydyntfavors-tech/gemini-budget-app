@@ -30,16 +30,32 @@ with st.sidebar:
     gifts = st.number_input("Gifts / Donations ($)", min_value=0, value=50, step=25)
     household = st.number_input("Household Items ($)", min_value=0, value=75, step=25)
 
+    st.subheader("Investments")
+    investments = st.number_input("Monthly Investments ($)", min_value=0, value=200, step=25)
+    annual_return = st.slider("Estimated Annual Return (%)", min_value=0.0, max_value=15.0, value=7.0, step=0.5)
+    investment_years = st.slider("Investment Timeline (Years)", min_value=1, max_value=40, value=20, step=1)
+
     st.subheader("Savings Goal")
     goal_name = st.text_input("What are you saving for?", value="Emergency Fund")
     target_amount = st.number_input("Target Amount ($)", min_value=0, value=5000, step=100)
 
 needs = rent + groceries + auto + gas_transportation + utilities + phone + health + debt
 wants = fun + subscriptions + personal + gifts + household
-total_expenses = needs + wants
+total_expenses = needs + wants + investments
 net_cash_flow = income - total_expenses
 savings_leftover = max(0, net_cash_flow)
+savings_and_investments = investments + savings_leftover
 months_to_goal = math.ceil(target_amount / savings_leftover) if savings_leftover else None
+monthly_return = (annual_return / 100) / 12
+investment_growth = []
+
+for year in range(investment_years + 1):
+    months = year * 12
+    if monthly_return:
+        future_value = investments * (((1 + monthly_return) ** months - 1) / monthly_return)
+    else:
+        future_value = investments * months
+    investment_growth.append((year, future_value))
 
 expense_details = {
     "Rent / Mortgage": rent,
@@ -55,6 +71,7 @@ expense_details = {
     "Clothing / Personal Care": personal,
     "Gifts / Donations": gifts,
     "Household Items": household,
+    "Investments": investments,
 }
 
 col1, col2 = st.columns([1, 1])
@@ -67,8 +84,8 @@ with col1:
     metric2.metric("Expenses", f"${total_expenses:,.0f}")
     metric3.metric("Left Over", f"${net_cash_flow:,.0f}")
 
-    labels = ["Needs", "Wants", "Savings/Leftover"]
-    sizes = [needs, wants, savings_leftover]
+    labels = ["Needs", "Wants", "Savings/Investments"]
+    sizes = [needs, wants, savings_and_investments]
     colors = ["#ff9999", "#66b3ff", "#99ff99"]
 
     if income > 0:
@@ -81,25 +98,6 @@ with col1:
 
     st.subheader("Expense Details")
     bar_fig, bar_ax = plt.subplots(figsize=(8, 5))
-    bar_ax.barh(list(expense_details.keys()), list(expense_details.values()), color="#66b3ff")
-    bar_ax.set_xlabel("Monthly Cost ($)")
-    bar_ax.invert_yaxis()
-    st.pyplot(bar_fig)
-
-    if months_to_goal:
-        st.success(f"At this pace, you can reach your {goal_name} goal in about {months_to_goal} months.")
-    elif target_amount:
-        st.warning("You do not have monthly savings left over yet, so the savings goal needs more room in the budget.")
-
-    if net_cash_flow < 0:
-        st.error(f"You are over budget by ${abs(net_cash_flow):,.0f}. Try lowering wants or reviewing fixed bills.")
-
-with col2:
-    st.subheader("AI Financial Consultation")
-
-    if st.button("Analyze My Complete Budget & Goal"):
-            
-            st.markdown(response.text)
 
 
                                    
