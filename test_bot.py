@@ -64,7 +64,7 @@ with st.sidebar:
     average_debt_apr = st.slider("Average Debt APR (%)", min_value=0.0, max_value=35.0, value=19.0, step=0.5)
 
     st.subheader("🎯 Savings Goal")
-    current_savings = st.number_input("Current Savings ($)", min_value=0, value=500, step=100)
+    current_emergency_fund = st.number_input("Current Emergency Fund ($)", min_value=0, value=500, step=100)
     goal_name = st.text_input("What are you saving for?", value="Emergency Fund")
     target_amount = st.number_input("Target Amount ($)", min_value=0, value=5000, step=100)
     extra_goal_contribution = st.number_input("Extra Monthly Goal Contribution ($)", min_value=0, value=0, step=25)
@@ -76,7 +76,7 @@ debt_payments = credit_card_payment + student_loan_payment + personal_loan_payme
 total_expenses = needs + wants + debt_payments
 monthly_leftover = total_income - total_expenses
 available_for_savings = max(0, monthly_leftover + extra_goal_contribution)
-remaining_goal = max(0, target_amount - current_savings)
+remaining_goal = max(0, target_amount - current_emergency_fund)
 goal_months = months_to_goal(remaining_goal, available_for_savings)
 
 recommended_needs = total_income * 0.50
@@ -230,7 +230,7 @@ with tab_goal:
     st.subheader(f"Goal Plan: {goal_name}")
 
     col1, col2, col3 = st.columns(3)
-    col1.metric("Current Savings", money(current_savings))
+    col1.metric("Current Emergency Fund", money(current_emergency_fund))
     col2.metric("Remaining Goal", money(remaining_goal))
     col3.metric("Monthly Available", money(available_for_savings))
 
@@ -243,7 +243,7 @@ with tab_goal:
 
         projection_months = list(range(goal_months + 1))
         projected_savings = [
-            min(target_amount, current_savings + (month * available_for_savings))
+            min(target_amount, current_emergency_fund + (month * available_for_savings))
             for month in projection_months
         ]
 
@@ -308,7 +308,7 @@ with tab_ai:
                 - Estimated monthly interest: {money(estimated_monthly_interest)}
 
                 SAVINGS AND GOAL:
-                - Current savings: {money(current_savings)}
+                - Current emergency fund: {money(current_emergency_fund)}
                 - Goal name: {goal_name}
                 - Goal target: {money(target_amount)}
                 - Remaining goal amount: {money(remaining_goal)}
@@ -334,7 +334,8 @@ with tab_ai:
 
                 response = client.models.generate_content(
                     model="gemini-2.5-flash",
-                    contents=prompt, )
+                    contents=prompt,
+                )
 
                 st.markdown(response.text)
 
