@@ -330,7 +330,7 @@ with tab_ai:
                 4. Three specific cost changes with estimated dollar amounts.
                 5. A recommended next-month action plan.
                 6. A brief caution if their cash flow, debt, or emergency fund looks risky.
-                7. recommendations on inprovment of their budget
+                7. recommendations on inprovment of your budget
                 """
 
                 response = client.models.generate_content(
