@@ -334,8 +334,7 @@ with tab_ai:
 
                 response = client.models.generate_content(
                     model="gemini-2.5-flash",
-                    contents=prompt,
-                )
+                    contents=prompt, )
 
                 st.markdown(response.text
 
