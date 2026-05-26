@@ -336,7 +336,7 @@ with tab_ai:
                     model="gemini-2.5-flash",
                     contents=prompt, )
 
-                st.markdown(response.text
+                st.markdown(response.text)
 
 
 
