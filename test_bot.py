@@ -76,7 +76,7 @@ debt_payments = credit_card_payment + student_loan_payment + personal_loan_payme
 total_expenses = needs + wants + debt_payments
 monthly_leftover = total_income - total_expenses
 available_for_savings = max(0, monthly_leftover + extra_goal_contribution)
-remaining_goal = max(0, target_amount - current_emergency_fund)
+remaining_goal = max(0, target_amount )
 goal_months = months_to_goal(remaining_goal, available_for_savings)
 
 recommended_needs = total_income * 0.50
