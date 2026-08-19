@@ -276,7 +276,7 @@ with tab_ai:
                 prompt = f"""
                 You are a practical financial planning assistant. Analyze this user's monthly budget.
                 Use plain language. Do not provide investment, tax, or legal advice. Focus on budgeting,
-                savings behavior, debt pressure, and cost tradeoffs.
+                savings behavior, debt pressure, and cost tradeoffs and stick to one font.
 
                 MONTHLY INCOME:
                 - Main income: {money(income)}
