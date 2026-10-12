@@ -324,13 +324,13 @@ with tab_ai:
                 - 50/30/20 target savings: {money(recommended_savings)}
 
                 Provide:
-                1. A short budget health score from 1-10 with the reason.
-                2. A category-by-category analysis of needs, wants, debt, and savings.
-                3. The exact goal timeline and whether it is realistic.
-                4. Three specific cost changes with estimated dollar amounts.
-                5. A recommended next-month action plan.
-                6. A brief caution if their cash flow, debt, or emergency fund looks risky.
-                7. recommendations on inprovment of your budget
+                1. A short budget health score from 1-10 with the reason stick to Arial font.
+                2. A category-by-category analysis of needs, wants, debt, and savings stick to Arial font.
+                3. The exact goal timeline and whether it is realistic stick to Arial font.
+                4. Three specific cost changes with estimated dollar amounts stick to Arial font.
+                5. A recommended next-month action plan stick to Arial font.
+                6. A brief caution if their cash flow, debt, or emergency fund looks risky stick to Arial font.
+                7. recommendations on inprovment of your budget stick to Arial font
                 
                 """
 
