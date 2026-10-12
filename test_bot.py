@@ -276,7 +276,7 @@ with tab_ai:
                 prompt = f"""
                 You are a practical financial planning assistant. Analyze this user's monthly budget.
                 Use plain language. Do not provide investment, tax, or legal advice. Focus on budgeting,
-                savings behavior, debt pressure, and cost tradeoffs avoid Katex class all through out the text .
+                savings behavior, debt pressure, and cost tradeoffs stick to plain text avoid katex .
 
                 MONTHLY INCOME:
                 - Main income: {money(income)}
@@ -335,7 +335,7 @@ with tab_ai:
                 """
 
                 response = client.models.generate_content(
-                    model="gemini-3.6-flash",
+                    model="gemini-2.5-flash",
                     contents=prompt,
                 )
 
