@@ -276,7 +276,7 @@ with tab_ai:
                 prompt = f"""
                 You are a practical financial planning assistant. Analyze this user's monthly budget.
                 Use plain language. Do not provide investment, tax, or legal advice. Focus on budgeting,
-                savings behavior, debt pressure, and cost tradeoffs stick to plain text avoid katex and avoid boldening the text all through the 7 prompts .
+                savings behavior, debt pressure, and cost tradeoffs stick to plain text avoid katex and avoid boldening the text all through the 7 prompts and make generated text same as raw text .
 
                 MONTHLY INCOME:
                 - Main income: {money(income)}
